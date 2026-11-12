@@ -13,6 +13,8 @@
 		1D145C7F0E5227CE00691AA0 /* MMTextViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D145C7E0E5227CE00691AA0 /* MMTextViewHelper.m */; };
 		1D1474980C56703C0038FA2B /* MacVim.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1474960C56703C0038FA2B /* MacVim.m */; };
 		1D1474A00C5673AE0038FA2B /* MMAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D14749E0C5673AE0038FA2B /* MMAppController.m */; };
+		ACAD00000000000000000003 /* AcademyWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACAD00000000000000000002 /* AcademyWelcomeController.m */; };
+		ACAD00000000000000000005 /* startup-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = ACAD00000000000000000004 /* startup-sound.wav */; };
 		1D1474AA0C5677450038FA2B /* MMTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1474A80C5677450038FA2B /* MMTextStorage.m */; };
 		1D1474B00C5678370038FA2B /* MMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1474AE0C5678370038FA2B /* MMTextView.m */; };
 		1D1474B60C56796D0038FA2B /* MMVimController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D1474B40C56796D0038FA2B /* MMVimController.m */; };
@@ -177,6 +179,9 @@
 		1D1474960C56703C0038FA2B /* MacVim.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MacVim.m; sourceTree = "<group>"; };
 		1D14749D0C5673AE0038FA2B /* MMAppController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MMAppController.h; sourceTree = "<group>"; };
 		1D14749E0C5673AE0038FA2B /* MMAppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MMAppController.m; sourceTree = "<group>"; };
+		ACAD00000000000000000001 /* AcademyWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AcademyWelcomeController.h; sourceTree = "<group>"; };
+		ACAD00000000000000000002 /* AcademyWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AcademyWelcomeController.m; sourceTree = "<group>"; };
+		ACAD00000000000000000004 /* startup-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "startup-sound.wav"; sourceTree = "<group>"; };
 		1D1474A70C5677450038FA2B /* MMTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MMTextStorage.h; sourceTree = "<group>"; };
 		1D1474A80C5677450038FA2B /* MMTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MMTextStorage.m; sourceTree = "<group>"; };
 		1D1474AD0C5678370038FA2B /* MMTextView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MMTextView.h; sourceTree = "<group>"; };
@@ -547,6 +552,9 @@
 				1D1474A80C5677450038FA2B /* MMTextStorage.m */,
 				1D14749D0C5673AE0038FA2B /* MMAppController.h */,
 				1D14749E0C5673AE0038FA2B /* MMAppController.m */,
+				ACAD00000000000000000001 /* AcademyWelcomeController.h */,
+				ACAD00000000000000000002 /* AcademyWelcomeController.m */,
+				ACAD00000000000000000004 /* startup-sound.wav */,
 				1D1474950C56703C0038FA2B /* MacVim.h */,
 				1D1474960C56703C0038FA2B /* MacVim.m */,
 				32CA4F630368D1EE00C91783 /* MacVim_Prefix.pch */,
@@ -1045,6 +1053,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				ACAD00000000000000000005 /* startup-sound.wav in Resources */,
 				1DD04DEC0C529C5E006CDC2B /* Credits.rtf in Resources */,
 				1DE8CC620C5E2AAD003F56E3 /* Actions.plist in Resources */,
 				1DD9F5E50C85D60500E8D5A5 /* SystemColors.plist in Resources */,
@@ -1225,6 +1234,7 @@
 				1D1474980C56703C0038FA2B /* MacVim.m in Sources */,
 				925B55D5254B604A006B047E /* MMHoverButton.m in Sources */,
 				1D1474A00C5673AE0038FA2B /* MMAppController.m in Sources */,
+				ACAD00000000000000000003 /* AcademyWelcomeController.m in Sources */,
 				1D1474AA0C5677450038FA2B /* MMTextStorage.m in Sources */,
 				1D1474B00C5678370038FA2B /* MMTextView.m in Sources */,
 				1D1474B60C56796D0038FA2B /* MMVimController.m in Sources */,
@@ -1506,8 +1516,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.vim.MacVim;
-				PRODUCT_NAME = MacVim;
+				PRODUCT_BUNDLE_IDENTIFIER = com.detroitautomationacademy.compositor;
+				PRODUCT_NAME = Compositor;
 				VERSIONING_SYSTEM = "apple-generic";
 				WARNING_CFLAGS = "-Wall";
 				WRAPPER_EXTENSION = app;
@@ -1538,8 +1548,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.vim.MacVim;
-				PRODUCT_NAME = MacVim;
+				PRODUCT_BUNDLE_IDENTIFIER = com.detroitautomationacademy.compositor;
+				PRODUCT_NAME = Compositor;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
