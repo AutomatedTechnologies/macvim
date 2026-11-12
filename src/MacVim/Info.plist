@@ -1235,6 +1235,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>${PRODUCT_NAME}</string>
+	<key>CFBundleDisplayName</key>
+	<string>Compositor</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -1255,7 +1257,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>184</string>
+	<string>compositor-test-1</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>NSAppTransportSecurity</key>
@@ -1309,18 +1311,6 @@
 			</dict>
 		</dict>
 	</array>
-	<key>MMWhatsNewURL</key>
-	<string>https://macvim.org/release-notes/whatsnew.html</string>
-	<key>SUVerifyUpdateBeforeExtraction</key>
-	<string>YES</string>
-	<key>SURequireSignedFeed</key>
-	<string>YES</string>
-	<key>SUEnableJavaScript</key>
-	<string>YES</string>
-	<key>SUFeedURL</key>
-	<string>https://macvim.org/appcast/latest.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>Pt4zsg/8S3/mxKW7Cmt0cZFw/+2LOuXOYS93evP+Mfc=</string>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>MacVim uses Apple Events to allow you to communicate with other apps using Apple Script, and to support working as an ODB external editor.</string>
 	<key>NSAppleScriptEnabled</key>
@@ -2712,5 +2702,22 @@
 			</dict>
 		</dict>
 	</array>
+	<key>com.detroitautomationacademy.conformance</key>
+	<dict>
+		<key>Standard</key>
+		<string>SDS-10</string>
+		<key>Logo</key>
+		<true/>
+		<key>VersionAtStartup</key>
+		<true/>
+		<key>StartupSound</key>
+		<true/>
+		<key>MenuBar</key>
+		<true/>
+		<key>Authority</key>
+		<string>Detroit Automation Academy</string>
+		<key>Date</key>
+		<string>2026-11-12</string>
+	</dict>
 </dict>
 </plist>
