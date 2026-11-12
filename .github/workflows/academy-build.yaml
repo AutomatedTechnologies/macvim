@@ -1,0 +1,50 @@
+name: Academy Build — Compositor
+
+# Academy build line for Compositor (fork of MacVim; build base
+# release-184). Builds the app through the fork's patched upstream
+# build/test workflow (publish configuration: Sparkle disabled,
+# --with-modified-by set per the Vim license II.3), then publishes
+# the staged zip as a prerelease on the dispatched tag.
+#
+# Dispatch manually at a release tag (e.g. compositor-test-1).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    uses: ./.github/workflows/macvim-buildtest.yaml
+    with:
+      skip: false
+      os: macos-15
+      xcode: '16.4'
+      legacy: false
+      testgui: false
+      publish: true
+      publish_postfix: ''
+      optimized: true
+      vimtags: false
+      check-xcodeproj-compat: false
+
+  release:
+    needs: build
+    runs-on: macos-15
+    steps:
+      - name: Download staged app zip
+        uses: actions/download-artifact@v7
+        with:
+          name: Compositor-test.zip
+
+      - name: Publish prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls -la Compositor-test.zip
+          gh release create "${{ github.ref_name }}" Compositor-test.zip \
+            --repo "${{ github.repository }}" \
+            --title "Compositor ${{ github.ref_name }}" \
+            --notes "Academy test build of Compositor (MacVim fork of Vim; build base release-184, Vim 9.2). Unsigned test build for the Distro pipeline; build record in the Distro goal files/34. NOT a catalog listing: the Academy audit tranche (Distro files/08) has not run on this build, so the bundle carries no audit entry and DistroInstaller would stop it — rig evaluation is direct, not via Distro. Modified by the Detroit Automation Academy under the Vim License; all changes are source in this repository (ACADEMY-FORK.md)." \
+            --prerelease
