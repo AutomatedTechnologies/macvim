@@ -38,6 +38,7 @@
  */
 
 #import "MMAppController.h"
+#import "AcademyWelcomeController.h" // Academy (SDS-8 welcome)
 #import "MMFullScreenWindow.h"
 #import "MMPreferenceController.h"
 #import "MMVimController.h"
@@ -231,7 +232,7 @@ fsEventCallback(ConstFSEventStreamRef streamRef,
         [NSNumber numberWithBool:YES],    MMAllowForceClickLookUpKey,
         [NSNumber numberWithBool:NO],     MMUpdaterPrereleaseChannelKey,
         @"",                              MMLastUsedBundleVersionKey,
-        [NSNumber numberWithBool:YES],    MMShowWhatsNewOnStartupKey,
+        [NSNumber numberWithBool:NO],    MMShowWhatsNewOnStartupKey, // Academy: no upstream What's New page in the Academy build line
         [NSNumber numberWithBool:0],      MMScrollOneDirectionOnlyKey,
         nil];
 
@@ -492,6 +493,10 @@ fsEventCallback(ConstFSEventStreamRef streamRef,
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
     [NSApp setServicesProvider:self];
+
+    // Academy: present the SDS-8 welcome once per build (SDS-10
+    // 10.2/10.3 — version line + startup sound live in the welcome).
+    [AcademyWelcomeController presentWelcomeIfNeeded];
 
     if ([self maxPreloadCacheSize] > 0) {
         [self scheduleVimControllerPreloadAfterDelay:2];
