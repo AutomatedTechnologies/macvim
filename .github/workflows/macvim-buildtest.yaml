@@ -50,9 +50,9 @@ env:
   vi_cv_dll_name_lua: /usr/local/lib/liblua.dylib
   vi_cv_dll_name_lua_arm64: /opt/homebrew/lib/liblua.dylib
 
-  MACVIM_APP: src/MacVim/build/Release/MacVim.app
-  VIM_BIN: src/MacVim/build/Release/MacVim.app/Contents/MacOS/Vim
-  MACVIM_BIN: src/MacVim/build/Release/MacVim.app/Contents/MacOS/MacVim
+  MACVIM_APP: src/MacVim/build/Release/Compositor.app
+  VIM_BIN: src/MacVim/build/Release/Compositor.app/Contents/MacOS/Vim
+  MACVIM_BIN: src/MacVim/build/Release/Compositor.app/Contents/MacOS/Compositor
 
   TERM: xterm
   BASH_SILENCE_DEPRECATION_WARNING: 1
@@ -216,10 +216,12 @@ jobs:
             --with-tlib=ncurses
             --enable-cscope
             --enable-gui=macvim
-            --with-compiledby="GitHub Actions"
+            --with-compiledby="Detroit Automation Academy"
+            --with-modified-by="Detroit Automation Academy"
           )
           if ${{ inputs.publish == true }}; then
             CONFOPT+=(
+              --disable-sparkle
               --enable-perlinterp=dynamic
               --enable-pythoninterp=dynamic
               --enable-python3interp=dynamic
@@ -438,33 +440,19 @@ jobs:
         with:
           artifact-name: ${{ format('{0}-{1}', inputs.os, inputs.xcode) }}
 
-      - name: Build MacVim dmg image
+      # Academy: Distro ships a zipped .app, not a dmg; and the product is
+      # Compositor.app, which the upstream dmg script (hardcoded to
+      # MacVim.app) cannot stage. Zip the built app instead.
+      - name: Stage Compositor.app zip (Academy)
         if: inputs.publish && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master')
         run: |
-          if ${{ inputs.legacy == true }}; then
-            make -C src macvim-dmg-legacy
-          else
-            make -C src macvim-dmg
-          fi
+          ditto -c -k --sequesterRsrc --keepParent "${{ env.MACVIM_APP }}" Compositor-test.zip
+          ls -la Compositor-test.zip
 
-          if ${{ inputs.publish_postfix != '' }}; then
-            mv src/MacVim/build/Release/MacVim.dmg src/MacVim/build/Release/MacVim${{ inputs.publish_postfix }}.dmg
-          fi
-
-      # Upload the dmg installer only when making tagged release or making a dev build from a master branch.
-      # Note that this doesn't create a GitHub release for us, because we would prefer to do it manually, for two
-      # reasons: 1) signing / notarization are currently done out of CI, 2) we want to manually format our release notes
-      # and add pictures to make them look nice. 
-      - name: Upload MacVim image
+      - name: Upload Compositor.app zip (Academy)
         if: inputs.publish && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master')
         uses: actions/upload-artifact@v7
         with:
-          name: MacVim${{ inputs.publish_postfix  }}.dmg
-          path: src/MacVim/build/Release/MacVim${{ inputs.publish_postfix }}.dmg
-
-          # If doing a tagged release, use repository-specified number of retention days (usually 90 days) to make it
-          # easier to audit. (specify "0" to indicate using repository settings)
-          #
-          # Otherwise, we are just doing a dev build for potential testing, just use a maximum of 21 days as we don't
-          # tend to need these for long.
+          name: Compositor-test.zip
+          path: Compositor-test.zip
           retention-days: ${{ startsWith(github.ref, 'refs/tags/') && 0 || (github.retention_days > 21 && 21 || 0) }}
